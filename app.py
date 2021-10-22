@@ -7,7 +7,7 @@ from telegram.utils.helpers import mention_markdown
 
 from database import BotDatabase
 
-TOKEN = os.getenv('TGBOT_TOKEN')
+TOKEN = os.getenv('2085679107:AAHc2PR6KzxYJ1ZfPP8uoW6vns_4wqfpO6E')
 
 logging.basicConfig(filename='logs.log', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -53,7 +53,7 @@ def unicode_truncate(s, length, encoding='utf-8'):
 def all_command(update, context):
     chat_id = update.effective_chat.id
     user_list = db.get_users_from_chat(chat_id)
-    logging.info('/all called, chat_id=%s user_count=%s', chat_id, len(user_list))
+    logging.info('/tag called, chat_id=%s user_count=%s', chat_id, len(user_list))
     if not user_list:
         message = 'There are no users. To opt in type /in command'
         context.bot.send_message(chat_id=chat_id, text=message)
@@ -82,8 +82,8 @@ updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
 handlers = [
-    CommandHandler('in', in_command),
-    CommandHandler('all', all_command),
+    CommandHandler('..', in_command),
+    CommandHandler('tag', all_command),
     CommandHandler('out', out_command),
     CommandHandler('start', start_command),
     CommandHandler('stats', stats_command),
